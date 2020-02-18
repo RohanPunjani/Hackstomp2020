@@ -1,9 +1,9 @@
-<div class="container form-form">
-    <h3 class="form-heading" style="color: white">Personal Info :
+<div class="container personal-form">
+    <h3 class="form-heading">Personal Info :
         <span><i class="fas fa-angle-up right arrow" for=".personal_info"></i></span>
     </h3>
 
-    <form action=" update_personal_info.php" method="POST" class="personal_info">
+    <form action="update_personal_info.php" method="POST" class="personal_info">
         <div class="row">
             <div class="col l1 s0"></div>
             <div class="col s12 l5">
@@ -48,17 +48,15 @@
                 </div>
                 <p>
                     Gender :
-                    <input id="male_gender" value='M' name="gender" type="radio" class="with-gap" checked />
+                    <input id="male_gender" value='M' name="gender" type="radio" class="with-gap"
+                        <?php if ($row['s_gender'] == 'M') echo 'checked'; ?> />
                     <label for="male_gender">Male </label>
-                    <input id="female_gender" value='F' name="gender" type="radio" class="with-gap" />
+                    <input id="female_gender" value='F' name="gender" type="radio" class="with-gap"
+                        <?php if ($row['s_gender'] == 'F') echo 'checked'; ?> />
                     <label for="female_gender">Female</label>
                 </p>
-                <button class="waves-effect waves-light btn col s12 l4 #eceff1 blue-grey lighten-5 black-text"
-                    type="submit">
-                    <i class="material-icons left">
-                        cloud
-                    </i>
-                    Submit
+                <button class="waves-effect waves-light btn col s12 l4 " type="submit">
+                    Update
                 </button>
             </div>
             <div class="col s0 l1"></div>

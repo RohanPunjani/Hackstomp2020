@@ -6,9 +6,6 @@ $conn = mysqli_connect("localhost", "root", "", "cllg");
 
 // $s_id = $_SESSION['s_id'];
 $s_id = 'ucoeb2018101001';
-$sql = "SELECT * from personal_info where s_id='$s_id';";
-$res = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($res)) {
 ?>
 
 
@@ -44,6 +41,7 @@ while ($row = mysqli_fetch_assoc($res)) {
             padding: 30px;
         }
 
+        /* 
         body {
             background-image: url('../../assets/images/bgGIF.gif');
             background-size: cover;
@@ -56,9 +54,42 @@ while ($row = mysqli_fetch_assoc($res)) {
 
         }
 
-        .form-form {
+        .personal-form,
+        .additional-form {
             background: rgba(255, 255, 255, 0.09);
             border-radius: 60px 0 0;
+        }
+
+        .additional-form {
+            border-radius: 0;
+        }
+
+        .card {
+            margin: 50px;
+        } */
+        header {
+            z-index: 2;
+        }
+
+        header nav {
+            background: rgba(0, 0, 0, 0.6);
+
+        }
+
+        .sect1 {
+            height: 100vh;
+            width: 100vw;
+            z-index: 0;
+            background: url(https://awls.org/wp-content/uploads/2015/05/Black-MT-656x304.jpeg);
+            background-size: cover;
+            margin-top: -80px;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .sect1 h1 {
+            margin: 0 60px;
         }
 
         </style>
@@ -66,11 +97,40 @@ while ($row = mysqli_fetch_assoc($res)) {
 
     <body>
         <header>
-
+            <?php
+        include('../com/nav.php');
+        ?>
         </header>
         <main>
-            <!-- Your content here -->
-            <?php include('./personal_info_form.php'); ?>
+
+
+            <section class="sect1">
+                <h1 class="white-text right">
+                    Welcome to your<br>Database
+                </h1>
+            </section>
+
+            <?php
+
+
+        $sql = "SELECT * from personal_info where s_id='$s_id';";
+        $res = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($res)) {
+            include('./personal_info_form.php');
+        }
+
+        $sql = "SELECT * from additional_info where s_id='$s_id';";
+        $res = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($res)) {
+            include('./additional_info_form.php');
+        }
+        $sql = "SELECT * from additional_info where s_id='$s_id';";
+        $res = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($res)) {
+            include('./parents_info.php');
+        }
+
+        ?>
         </main>
         <!-- jQuery CDN -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -107,7 +167,6 @@ while ($row = mysqli_fetch_assoc($res)) {
 
 <?php
 
-}
 $_SESSION['s_id'] = $s_id;
 
 ?>

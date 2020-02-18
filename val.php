@@ -11,7 +11,7 @@ if (!$conn) {
 }
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
 $login_query = mysqli_query($conn, "Select * from personal_info where s_username='$username' and s_password='$password';");
 
